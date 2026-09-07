@@ -79,31 +79,31 @@ export default function PhotoGallery({
   };
 
   return (
-    <section id="fullGallery" className="py-28 px-6 max-w-7xl mx-auto relative z-20">
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+    <section id="fullGallery" className="py-16 sm:py-28 px-4 sm:px-6 max-w-7xl mx-auto relative z-20">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-5 sm:gap-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 text-xs text-[#E1A26B] font-semibold uppercase tracking-wider mb-2">
-            <FolderCheck className="w-4 h-4" />
+          <div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs text-[#E1A26B] font-semibold uppercase tracking-wider mb-2">
+            <FolderCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             <span>Google Drive Collection ({photos.length} Photos & Live Media)</span>
             {isLiveSynced && (
-              <span className="ml-2 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px]">
+              <span className="ml-1.5 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[9px] sm:text-[10px]">
                 ● Live Synced
               </span>
             )}
           </div>
-          <h2 className="text-3xl sm:text-5xl font-semibold text-[#FAF5F0]">
+          <h2 className="text-2.5xl sm:text-4xl md:text-5xl font-semibold text-[#FAF5F0]">
             Complete Photo Gallery
           </h2>
-          <p className="text-sm text-neutral-400 mt-2">
-            Hover over Live Photos to play motion • Click any media for high-res view.
+          <p className="text-xs sm:text-sm text-neutral-400 mt-1.5 sm:mt-2">
+            Tap any media to view high-res • Live Photos animate with motion.
           </p>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-[#140C08] border border-[#C98246]/20 text-xs">
+        {/* Filter Tabs - Smooth horizontal scroll on mobile with touch */}
+        <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-[#140C08] border border-[#C98246]/20 text-xs overflow-x-auto no-scrollbar max-w-full">
           <button
             onClick={() => setSelectedCategory("all")}
-            className={`px-3.5 py-1.5 rounded-xl font-bold transition active:scale-95 cursor-pointer ${
+            className={`whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-xl font-bold transition active:scale-95 cursor-pointer text-xs ${
               selectedCategory === "all"
                 ? "bg-[#C98246] text-[#0A0604]"
                 : "text-neutral-400 hover:text-[#FAF5F0]"
@@ -113,7 +113,7 @@ export default function PhotoGallery({
           </button>
           <button
             onClick={() => setSelectedCategory("candid")}
-            className={`px-3.5 py-1.5 rounded-xl font-bold transition active:scale-95 cursor-pointer ${
+            className={`whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-xl font-bold transition active:scale-95 cursor-pointer text-xs ${
               selectedCategory === "candid"
                 ? "bg-[#C98246] text-[#0A0604]"
                 : "text-neutral-400 hover:text-[#FAF5F0]"
@@ -123,7 +123,7 @@ export default function PhotoGallery({
           </button>
           <button
             onClick={() => setSelectedCategory("milestone")}
-            className={`px-3.5 py-1.5 rounded-xl font-bold transition active:scale-95 cursor-pointer ${
+            className={`whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-xl font-bold transition active:scale-95 cursor-pointer text-xs ${
               selectedCategory === "milestone"
                 ? "bg-[#C98246] text-[#0A0604]"
                 : "text-neutral-400 hover:text-[#FAF5F0]"
@@ -133,7 +133,7 @@ export default function PhotoGallery({
           </button>
           <button
             onClick={() => setSelectedCategory("travel")}
-            className={`px-3.5 py-1.5 rounded-xl font-bold transition active:scale-95 cursor-pointer ${
+            className={`whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-xl font-bold transition active:scale-95 cursor-pointer text-xs ${
               selectedCategory === "travel"
                 ? "bg-[#C98246] text-[#0A0604]"
                 : "text-neutral-400 hover:text-[#FAF5F0]"
@@ -145,12 +145,12 @@ export default function PhotoGallery({
       </div>
 
       {/* Grid with Live Photo & Video Support */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
         {filteredPhotos.map((photo, index) => (
           <div
             key={photo.id}
             onClick={() => setActivePhotoIndex(index)}
-            className="glass-box rounded-3xl p-3.5 flex flex-col justify-between cursor-pointer group"
+            className="glass-box rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 flex flex-col justify-between cursor-pointer group"
           >
             <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-[#140C08] mb-3 relative">
               {photo.type === "video" && photo.videoSrc ? (
