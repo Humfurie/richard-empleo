@@ -1,0 +1,148 @@
+export interface PhotoItem {
+  id: string;
+  src: string;
+  videoSrc?: string;
+  type?: "image" | "live" | "video";
+  title: string;
+  caption: string;
+  category: "candid" | "travel" | "milestone";
+  date?: string;
+}
+
+export const PHOTO_COLLECTION: PhotoItem[] = [
+  {
+    id: "candid-main",
+    src: "/photos/484134895_2556877727836074_89690266043101043_n.jpg",
+    type: "live",
+    title: "Candid Vibes • Richard",
+    caption: "Genuine smile & good times (Hover for Live Motion)",
+    category: "candid",
+    date: "2025",
+  },
+  {
+    id: "wedding-crew-1",
+    src: "/photos/774814247_3058941844296324_2789370655237055161_n.jpg",
+    type: "live",
+    title: "Wedding with the Crew",
+    caption: "August 1, 2026 • Celebrating with the crew",
+    category: "milestone",
+    date: "August 1, 2026",
+  },
+  {
+    id: "solo-portrait",
+    src: "/photos/dji_mimo_20250131_151348_0_1738308912274_photo.jpg",
+    type: "live",
+    title: "Solo Portrait",
+    caption: "Richard Empleo • Natural Warmth",
+    category: "candid",
+    date: "January 31, 2025",
+  },
+  {
+    id: "drone-coastline-1",
+    src: "/photos/DJI_20241228173509_0117_D.JPG",
+    type: "image",
+    title: "Sunset Coastline",
+    caption: "DJI 4K Aerial Flight",
+    category: "travel",
+    date: "December 28, 2024",
+  },
+  {
+    id: "wedding-white-1",
+    src: "/photos/IMG_1068.JPG",
+    type: "live",
+    title: "Wedding in White",
+    caption: "August 1, 2026 • Gathering in white",
+    category: "milestone",
+    date: "August 1, 2026",
+  },
+  {
+    id: "mountain-ridge",
+    src: "/photos/dji_mimo_20250131_103826_0_1738291287820_photo.jpg",
+    type: "image",
+    title: "Mountain Ridge Walk",
+    caption: "Early morning ridge trail",
+    category: "travel",
+    date: "January 31, 2025",
+  },
+  {
+    id: "wedding-white-2",
+    src: "/photos/IMG_1069.JPG",
+    type: "image",
+    title: "Joy & Cheerful Spirits",
+    caption: "Unfiltered celebration with the group",
+    category: "milestone",
+    date: "August 1, 2026",
+  },
+  {
+    id: "roadtrip-candid",
+    src: "/photos/dji_mimo_20250131_143338_0_1738308954765_photo.jpg",
+    type: "live",
+    title: "Roadtrip Candid",
+    caption: "On the move with great energy",
+    category: "candid",
+    date: "January 31, 2025",
+  },
+  {
+    id: "drone-horizon-2",
+    src: "/photos/DJI_20241228174152_0150_D.JPG",
+    type: "image",
+    title: "Golden Hour Horizon",
+    caption: "DJI Aerial Flight",
+    category: "travel",
+    date: "December 28, 2024",
+  },
+  {
+    id: "afternoon-light",
+    src: "/photos/dji_mimo_20250131_145326_0_1738308923347_photo.jpg",
+    type: "image",
+    title: "Afternoon Light",
+    caption: "Travel vibes & relaxed moments",
+    category: "candid",
+    date: "January 31, 2025",
+  },
+  {
+    id: "mountain-summit",
+    src: "/photos/dji_mimo_20250131_104844_0_1738292924987_photo.jpg",
+    type: "image",
+    title: "Mountain Summit",
+    caption: "Clear skies and fresh air",
+    category: "travel",
+    date: "January 31, 2025",
+  },
+  {
+    id: "wedding-night",
+    src: "/photos/dji_mimo_20260801_214800_0333_1785632682985_photo.jpg",
+    type: "image",
+    title: "August 1 Milestone",
+    caption: "August 1, 2026 Matrimony",
+    category: "milestone",
+    date: "August 1, 2026",
+  },
+  {
+    id: "archive-2023",
+    src: "/photos/20231105172405_IMG_8700.JPG",
+    type: "image",
+    title: "Archive Snapshot",
+    caption: "Memories from 2023",
+    category: "milestone",
+    date: "November 5, 2023",
+  },
+  {
+    id: "summer-wa-1",
+    src: "/photos/IMG-20250629-WA0003.jpg",
+    type: "image",
+    title: "Summer Memories",
+    caption: "Good times together",
+    category: "candid",
+    date: "June 2025",
+  },
+  {
+    id: "summer-wa-2",
+    src: "/photos/IMG-20250629-WA0011.jpg",
+    type: "image",
+    title: "Lifelong Circle",
+    caption: "Unbreakable friendships",
+    category: "candid",
+    date: "June 2025",
+  },
+];
