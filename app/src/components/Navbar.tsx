@@ -33,7 +33,7 @@ export default function Navbar() {
             Scroll Story
           </a>
           <a href="#fullGallery" className="hover:text-[#F2C89D] transition">
-            All 15 Photos
+            Full Gallery
           </a>
           <a href="#wishes" className="hover:text-[#F2C89D] transition">
             Leave a Wish

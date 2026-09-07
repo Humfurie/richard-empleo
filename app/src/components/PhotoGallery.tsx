@@ -30,10 +30,13 @@ export default function PhotoGallery({
         const data = await res.json();
         if (data && data.success && Array.isArray(data.photos) && data.photos.length > 0) {
           if (!isMounted) return;
-          // Merge newly detected drive photos with local collection
-          const existingIds = new Set(PHOTO_COLLECTION.map((p) => p.id));
+          // Merge newly detected drive photos with local collection,
+          // deduping by filename since Drive file IDs never match local IDs
+          const existingFilenames = new Set(
+            PHOTO_COLLECTION.map((p) => p.src.split("/").pop())
+          );
           const newPhotos: PhotoItem[] = data.photos.filter(
-            (p: PhotoItem) => !existingIds.has(p.id)
+            (p: PhotoItem) => !existingFilenames.has(p.filename)
           );
           if (newPhotos.length > 0) {
             setPhotos([...PHOTO_COLLECTION, ...newPhotos]);

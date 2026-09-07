@@ -7,6 +7,7 @@ export interface PhotoItem {
   caption: string;
   category: "candid" | "travel" | "milestone";
   date?: string;
+  filename?: string;
 }
 
 export const PHOTO_COLLECTION: PhotoItem[] = [
