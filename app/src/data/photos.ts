@@ -31,9 +31,10 @@ export const PHOTO_COLLECTION: PhotoItem[] = [
   {
     id: "solo-portrait",
     src: "/photos/dji_mimo_20250131_151348_0_1738308912274_photo.jpg",
+    videoSrc: "/photos/dji_live_motion.mp4",
     type: "live",
-    title: "Solo Portrait",
-    caption: "Richard Empleo • Natural Warmth",
+    title: "Solo Portrait (DJI Live Photo)",
+    caption: "Richard Empleo • Natural Warmth & Live Motion",
     category: "candid",
     date: "January 31, 2025",
   },

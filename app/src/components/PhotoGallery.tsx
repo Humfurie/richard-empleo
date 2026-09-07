@@ -15,13 +15,45 @@ export default function PhotoGallery({
   externalLightboxIndex = null,
   onCloseExternalLightbox,
 }: PhotoGalleryProps) {
+  const [photos, setPhotos] = useState<PhotoItem[]>(PHOTO_COLLECTION);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [activePhotoIndex, setActivePhotoIndex] = useState<number | null>(null);
+  const [isLiveSynced, setIsLiveSynced] = useState<boolean>(false);
+
+  // Auto-sync with Google Drive folder on refresh / mount
+  React.useEffect(() => {
+    let isMounted = true;
+    async function syncDrivePhotos() {
+      try {
+        const res = await fetch("/api/photos", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data && data.success && Array.isArray(data.photos) && data.photos.length > 0) {
+          if (!isMounted) return;
+          // Merge newly detected drive photos with local collection
+          const existingIds = new Set(PHOTO_COLLECTION.map((p) => p.id));
+          const newPhotos: PhotoItem[] = data.photos.filter(
+            (p: PhotoItem) => !existingIds.has(p.id)
+          );
+          if (newPhotos.length > 0) {
+            setPhotos([...PHOTO_COLLECTION, ...newPhotos]);
+            setIsLiveSynced(true);
+          }
+        }
+      } catch (err) {
+        console.warn("Drive live sync fallback to local collection:", err);
+      }
+    }
+    syncDrivePhotos();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const filteredPhotos: PhotoItem[] =
     selectedCategory === "all"
-      ? PHOTO_COLLECTION
-      : PHOTO_COLLECTION.filter((p) => p.category === selectedCategory);
+      ? photos
+      : photos.filter((p) => p.category === selectedCategory);
 
   const currentLightboxIndex =
     externalLightboxIndex !== null ? externalLightboxIndex : activePhotoIndex;
@@ -52,7 +84,12 @@ export default function PhotoGallery({
         <div>
           <div className="inline-flex items-center gap-1.5 text-xs text-[#E1A26B] font-semibold uppercase tracking-wider mb-2">
             <FolderCheck className="w-4 h-4" />
-            <span>Google Drive Collection ({PHOTO_COLLECTION.length} Photos & Live Media)</span>
+            <span>Google Drive Collection ({photos.length} Photos & Live Media)</span>
+            {isLiveSynced && (
+              <span className="ml-2 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px]">
+                ● Live Synced
+              </span>
+            )}
           </div>
           <h2 className="text-3xl sm:text-5xl font-semibold text-[#FAF5F0]">
             Complete Photo Gallery
@@ -72,7 +109,7 @@ export default function PhotoGallery({
                 : "text-neutral-400 hover:text-[#FAF5F0]"
             }`}
           >
-            All ({PHOTO_COLLECTION.length})
+            All ({photos.length})
           </button>
           <button
             onClick={() => setSelectedCategory("candid")}
